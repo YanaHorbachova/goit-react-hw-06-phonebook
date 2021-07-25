@@ -1,0 +1,20 @@
+.Form {
+    display: flex;
+    width: 650px;
+    align-items: center;
+    text-align: center;
+  }
+  .Form input {
+    margin-left: 10px;
+    padding: 5px;
+  }
+  .Form label {
+    margin-right: 20px;
+  }
+  .Form button {
+    width: 75px;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  
