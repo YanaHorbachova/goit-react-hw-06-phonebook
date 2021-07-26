@@ -1,40 +1,53 @@
-import { combineReducers } from 'redux';
-import types from './phonebook-types';
+import { combineReducers } from "redux";
+import { createReducer } from "@reduxjs/toolkit";
+// import actionTypes from "./phonebook-types";
+import actions from "./phonebook-actions";
 
-const itemsInitialState = [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ];
+const items = createReducer([], {
+  [actions.addContact]: (state, { payload }) => [...state, payload],
+  [actions.deleteContact]: (state, { payload }) =>
+    state.filter((contact) => contact.id !== payload),
+});
 
-const itemsReducer = (state = [itemsInitialState], { type, payload }) => {
-    switch (type) {
-        case types.ADD: 
-        return [payload, ...state];
+const filter = createReducer("", {
+  [actions.filter]: (_, { payload }) => payload,
+});
 
-        case types.DELETE:
-        return state.filter(
-            (contact) => contact.id !== payload);
+export default combineReducers({
+  items,
+  filter,
+});
 
-        default: 
-        return state;
-    }
-};
+///WITHOUT REDUX TOOLKIT
+// import {combineReducers} from 'redux';
+// import actionTypes from './phonebook-types'
 
-const filterReducer = (state = '', { type, payload }) => {
-    switch (type) {
-        case types.CHANGE_FILTER:
-        return payload
+// const items=(state=[], {type, payload}) => {
+//   switch(type) {
+// case actionTypes.ADD:
+//   return [...state, payload];
 
-        default: 
-        return state;
-    }
-};
+//     case actionTypes.DELETE:
+//   return state.filter(contact => contact.id !== payload);
 
-const contactsReducer = combineReducers({
-    items: itemsReducer,
-    filter: filterReducer,
-  });
-  
-  export default contactsReducer;
+//     default:
+//     return state;
+
+//   }
+
+// }
+
+// const filter = (state = '', {type, payload}) => {
+//     switch (type) {
+//       case actionTypes.FILTER:
+//         return payload;
+
+//       default:
+//         return state;
+//     }
+// };
+
+// export default combineReducers({
+//     items,
+//     filter
+// })

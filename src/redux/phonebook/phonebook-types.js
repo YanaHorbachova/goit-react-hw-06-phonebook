@@ -1,5 +1,9 @@
-const ADD = "contacts/Add_contact";
-const CHANGE_FILTER = "contacts/change_filter";
-const DELETE = "contacts/delete_contact";
+//  const ADD = "phonebook/Add";
+//  const DELETE = "phonebook/Delete";
+//  const FILTER = "phonebook/Filter";
 
-export default { ADD, CHANGE_FILTER, DELETE };
+// export default {
+//   ADD,
+//   DELETE,
+//   FILTER,
+// };
